@@ -27,7 +27,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/scraperhw", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_3nf3lr5z:fcf055lik8sr8r16i3conjo94m@ds131737.mlab.com:31737/heroku_3nf3lr5z",
+{
+  useCreateIndex: true,
+  useNewUrlParser: true
+}
+);
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
